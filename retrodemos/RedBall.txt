@@ -1,0 +1,54 @@
+void drawSpriteRedBall( inout vec4 color, float x, float y )
+{
+	
+	vec4 tile = vec4(0.0);
+	
+	// unpack the bitmap on a row-by-row basis
+	if (y == 0.0) tile = vec4(0xdb6db6, 0xb6ddb6, 0xdb6b6d, 0xdb6db6);
+	if (y == 1.0) tile = vec4(0xdb6db6, 0x924b6e, 0xd648db, 0xdb6db6);
+	if (y == 2.0) tile = vec4(0xbb6db6, 0x924925, 0xb23724, 0xdb6db5);
+	if (y == 3.0) tile = vec4(0x976db6, 0x91b6dc, 0x8dc92c, 0xdb6dac);
+	if (y == 4.0) tile = vec4(0x72edb6, 0x6d2492, 0x6e4b24, 0xdb6d63);
+	if (y == 5.0) tile = vec4(0x49ddb6, 0x69224a, 0x925b23, 0xdb6b1b);
+	if (y == 6.0) tile = vec4(0x294bb6, 0x489208, 0x96d923, 0xdb58dc);
+	if (y == 7.0) tile = vec4(0x053976, 0x449041, 0xb6c91b, 0xdac6e4);
+	if (y == 8.0) tile = vec4(0x212976, 0x448200, 0xb648da, 0xda34e5);
+	if (y == 9.0) tile = vec4(0x04a72e, 0x241001, 0xb646da, 0xd62725);
+	if (y == 10.0) tile = vec4(0x20a72e, 0x248200, 0xb646d2, 0xd1a72d);
+	if (y == 11.0) tile = vec4(0x04a72e, 0x241001, 0xb646d2, 0xd1272d);
+	if (y == 12.0) tile = vec4(0x252725, 0x248208, 0xb646d2, 0x8d272d);
+	if (y == 13.0) tile = vec4(0x252725, 0x249041, 0xb646d2, 0x88a72d);
+	if (y == 14.0) tile = vec4(0x293925, 0x449249, 0xb646da, 0x88a72d);
+	if (y == 15.0) tile = vec4(0x49b925, 0x48924a, 0xb648da, 0x88a52d);
+	if (y == 16.0) tile = vec4(0x6dc91d, 0x492492, 0xb6c91b, 0x889525);
+	if (y == 17.0) tile = vec4(0x724b1d, 0x6d249b, 0xb6c923, 0x8914e5);
+	if (y == 18.0) tile = vec4(0x92491d, 0x6db6db, 0xb6d924, 0x8d14e4);
+	if (y == 19.0) tile = vec4(0x92d8e5, 0x8db6dc, 0xb6d924, 0x91129c);
+	if (y == 20.0) tile = vec4(0x96c8e6, 0x924924, 0x96db64, 0xd1929c);
+	if (y == 21.0) tile = vec4(0xb64726, 0x924924, 0x92db6d, 0xd22253);
+	if (y == 22.0) tile = vec4(0xb6372e, 0xb6db6d, 0x725b6d, 0xd6344a);
+	if (y == 23.0) tile = vec4(0xb23976, 0xb6db6d, 0x4e4b6d, 0xda344a);
+	if (y == 24.0) tile = vec4(0x91b976, 0xb6db6d, 0x49c92d, 0xdac689);
+	if (y == 25.0) tile = vec4(0x8dcbb6, 0xb6db64, 0x253724, 0xdb48d1);
+	if (y == 26.0) tile = vec4(0x6e5db6, 0x924923, 0x24a4dc, 0xdb68da);
+	if (y == 27.0) tile = vec4(0x72edb6, 0x4db6da, 0x489292, 0xdb6d23);
+	if (y == 28.0) tile = vec4(0x976db6, 0x492493, 0x6d1249, 0xdb6da4);
+	if (y == 29.0) tile = vec4(0xbb6db6, 0x24a4e4, 0x923491, 0xdb6db5);
+	if (y == 30.0) tile = vec4(0xdb6db6, 0x49392e, 0xd648d2, 0xdb6db6);
+	if (y == 31.0) tile = vec4(0xdb6db6, 0x924db6, 0xdb6924, 0xdb6db6);
+	
+	float n = mod(x, 32.0); // quantize x coordinate to nearest 32 pixels and get float containing 8 pixels
+	float t = ( ( n < 8.0 ) ? tile.x : ( n < 16.0 ) ? tile.y : (n < 24.0 ) ? tile.z : tile.w );
+	float p = mod( x, 8.0 ) * 3.0; // quantize x coordinate to nearest 8 pixels to determine pixel bit index
+	int idx = int( mod( floor( t * exp2(-p) ), 8.0)); // shift down by given bit index and mask off bits we need to determine pixel index colour
+	
+	// look up colour palette for the indexed pixel
+	if (idx == 0) color = vec4(0.752941, 0.000000, 0.000000, 1.0);
+	if (idx == 1) color = vec4(0.627451, 0.000000, 0.000000, 1.0);
+	if (idx == 2) color = vec4(0.501961, 0.000000, 0.000000, 1.0);
+	if (idx == 3) color = vec4(0.376471, 0.000000, 0.000000, 1.0);
+	if (idx == 4) color = vec4(0.250980, 0.000000, 0.000000, 1.0);
+	if (idx == 5) color = vec4(0.125490, 0.000000, 0.000000, 1.0);
+	if (idx == 6) color = vec4(0.000000, 0.000000, 0.000000, 1.0);
+	if (idx == 7) color = vec4(0.000000, 0.000000, 0.000000, 1.0);
+}
