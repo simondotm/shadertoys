@@ -18,3 +18,9 @@ https://www.shadertoy.com/view/4sGGWh
 https://www.shadertoy.com/view/ls2cWR
 
 <img width="1188" height="662" alt="image" src="https://github.com/user-attachments/assets/f6f91ae9-0821-4e8a-bdab-bf7f7573e683" />
+
+## ZippyTestPlasma
+
+https://www.shadertoy.com/view/MdVGzm
+
+<img width="1188" height="662" alt="image" src="https://github.com/user-attachments/assets/192d31eb-0dcd-4fa9-b44f-cf1849ad73e2" />
